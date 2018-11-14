@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 using System.Data;
 using System.Windows.Forms;
 
@@ -10,7 +11,7 @@ namespace Labyrinth
 {
     class DataGridViewUtils
     {
-        //задать матрицу нужного размера
+        //задать лабиринт нужного размера
         public static void ShowDataGridView(DataGridView dgv, int n_str, int n_col)
         {
             DataTable lbr = new DataTable("labirinth");
@@ -42,6 +43,11 @@ namespace Labyrinth
 
             dgv.Width = dgv.Columns[0].Width * n_col + n_col;
             dgv.Height = dgv.Rows[0].Height * n_str + n_str;
+
+            
+            dgv.DefaultCellStyle.SelectionForeColor = Color.GhostWhite;
+
+
         }
     }
 }

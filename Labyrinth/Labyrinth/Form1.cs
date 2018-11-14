@@ -28,5 +28,34 @@ namespace Labyrinth
 
             lbr = new Labirinth(dgvLabirinth, rows, cols);
         }
+
+        private void btnInfo_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("     Размер n x m: размер будущего лабиринта, где n -\r\n"
+                + "количество строк, m - количество столбцов.\r\n"
+                + "     Редактирование лабиринта: \r\n"
+                + "a) начать - при выборе в таблице ячеек, соответствующие\r\n"
+                + "ячейки меняют цвет;\r\n"
+                + "b) закончить - останавливает редактирование.\r\n"
+                + "     Черный цвет означает стену, белый - пустоту (проход).\r\n",
+                "Информация о работе приложения", MessageBoxButtons.OK);
+        }
+
+
+
+        private void dgvLabirinth_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (dgvLabirinth.CurrentCell.Style.BackColor == Color.White)
+            {
+                dgvLabirinth.CurrentCell.Style.BackColor = Color.Black;
+            }
+            else 
+                if (dgvLabirinth.CurrentCell.Style.BackColor == Color.Black)
+                {
+                    dgvLabirinth.CurrentCell.Style.BackColor = Color.White;
+                }
+            
+        }
+
     }
 }
