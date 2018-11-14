@@ -11,7 +11,7 @@ namespace Labyrinth
     class DataGridViewUtils
     {
         //задать матрицу нужного размера
-        public static void ShowDataGridView(DataGridView dtv, int n_str, int n_col)
+        public static void ShowDataGridView(DataGridView dgv, int n_str, int n_col)
         {
             DataTable lbr = new DataTable("labirinth");
             DataColumn[] cols = new DataColumn[n_col];
@@ -30,18 +30,18 @@ namespace Labyrinth
             }
 
             //установление размера ячеек
-            dtv.DataSource = lbr;
+            dgv.DataSource = lbr;
             for (int i = 0; i < n_col; i++)
-                dtv.Columns[i].Width = 30;
+            {
+                dgv.Columns[i].Width = 30;
+            }
+            for (int i = 0; i < n_str; i++)
+            {
+                dgv.Rows[i].Height = 30;
+            }
 
-            dtv.AutoSizeColumnsMode =
-                DataGridViewAutoSizeColumnsMode.AllCells;
-            dtv.AutoResizeColumns();
-
-            dtv.AutoSizeRowsMode =
-                DataGridViewAutoSizeRowsMode.AllCells;
-            dtv.AutoResizeRows(
-                DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders);
+            dgv.Width = dgv.Columns[0].Width * n_col + n_col;
+            dgv.Height = dgv.Rows[0].Height * n_str + n_str;
         }
     }
 }
