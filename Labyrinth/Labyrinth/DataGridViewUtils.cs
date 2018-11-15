@@ -41,13 +41,19 @@ namespace Labyrinth
                 dgv.Rows[i].Height = 30;
             }
 
+            //настройка размера лабиринта
             dgv.Width = dgv.Columns[0].Width * n_col + n_col;
             dgv.Height = dgv.Rows[0].Height * n_str + n_str;
 
-            
-            dgv.DefaultCellStyle.SelectionForeColor = Color.GhostWhite;
-
-
+            //настройка цвета ячеек
+            for (int i = 0; i < n_col; i++)
+            {
+                for (int j = 0; j < n_str; j++)
+                {
+                    dgv[i, j].Style.BackColor = Color.White;
+                    dgv[i, j].Style.SelectionBackColor = Color.GhostWhite;
+                }
+            }
         }
     }
 }

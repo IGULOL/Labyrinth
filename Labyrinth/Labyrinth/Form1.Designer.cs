@@ -64,7 +64,7 @@
             this.dgvLabirinth.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dgvLabirinth.Size = new System.Drawing.Size(54, 53);
             this.dgvLabirinth.TabIndex = 0;
-            this.dgvLabirinth.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvLabirinth_CellMouseClick);
+            this.dgvLabirinth.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvLabirinth_CellMouseUp);
             // 
             // numericUpDownRows
             // 

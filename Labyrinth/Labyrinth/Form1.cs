@@ -41,21 +41,21 @@ namespace Labyrinth
                 "Информация о работе приложения", MessageBoxButtons.OK);
         }
 
-
-
-        private void dgvLabirinth_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void dgvLabirinth_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (dgvLabirinth.CurrentCell.Style.BackColor == Color.White)
-            {
-                dgvLabirinth.CurrentCell.Style.BackColor = Color.Black;
-            }
-            else 
-                if (dgvLabirinth.CurrentCell.Style.BackColor == Color.Black)
-                {
-                    dgvLabirinth.CurrentCell.Style.BackColor = Color.White;
-                }
-            
-        }
+            var cell = dgvLabirinth[e.ColumnIndex, e.RowIndex];
 
+            if (cell.Style.BackColor == Color.White)
+            {
+                cell.Style.BackColor = Color.Black;
+            }
+            else
+                if (cell.Style.BackColor == Color.Black)
+                {
+                    cell.Style.BackColor = Color.White;
+                }
+
+            cell.Style.SelectionBackColor = cell.Style.BackColor;
+        }
     }
 }
