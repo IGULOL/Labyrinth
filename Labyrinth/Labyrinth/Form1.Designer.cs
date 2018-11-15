@@ -35,10 +35,9 @@
             this.numericUpDownCols = new System.Windows.Forms.NumericUpDown();
             this.btnCreateLabirinth = new System.Windows.Forms.Button();
             this.dgvRes = new System.Windows.Forms.DataGridView();
-            this.btnEditLabirinthRun = new System.Windows.Forms.Button();
-            this.lbEditLabirinth = new System.Windows.Forms.Label();
-            this.btnEditLabirinthFinish = new System.Windows.Forms.Button();
             this.btnInfo = new System.Windows.Forms.Button();
+            this.lbEdit = new System.Windows.Forms.Label();
+            this.checkedEdit = new System.Windows.Forms.CheckedListBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLabirinth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRows)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCols)).BeginInit();
@@ -55,7 +54,7 @@
             this.dgvLabirinth.ColumnHeadersHeight = 25;
             this.dgvLabirinth.ColumnHeadersVisible = false;
             this.dgvLabirinth.GridColor = System.Drawing.SystemColors.ButtonFace;
-            this.dgvLabirinth.Location = new System.Drawing.Point(37, 171);
+            this.dgvLabirinth.Location = new System.Drawing.Point(37, 182);
             this.dgvLabirinth.Margin = new System.Windows.Forms.Padding(4);
             this.dgvLabirinth.Name = "dgvLabirinth";
             this.dgvLabirinth.ReadOnly = true;
@@ -132,9 +131,9 @@
             // 
             // btnCreateLabirinth
             // 
-            this.btnCreateLabirinth.Location = new System.Drawing.Point(299, 31);
+            this.btnCreateLabirinth.Location = new System.Drawing.Point(306, 31);
             this.btnCreateLabirinth.Name = "btnCreateLabirinth";
-            this.btnCreateLabirinth.Size = new System.Drawing.Size(114, 27);
+            this.btnCreateLabirinth.Size = new System.Drawing.Size(129, 27);
             this.btnCreateLabirinth.TabIndex = 5;
             this.btnCreateLabirinth.Text = "Задать";
             this.btnCreateLabirinth.UseVisualStyleBackColor = true;
@@ -150,7 +149,7 @@
             this.dgvRes.ColumnHeadersHeight = 25;
             this.dgvRes.ColumnHeadersVisible = false;
             this.dgvRes.GridColor = System.Drawing.SystemColors.ButtonFace;
-            this.dgvRes.Location = new System.Drawing.Point(381, 171);
+            this.dgvRes.Location = new System.Drawing.Point(381, 182);
             this.dgvRes.Margin = new System.Windows.Forms.Padding(4);
             this.dgvRes.Name = "dgvRes";
             this.dgvRes.ReadOnly = true;
@@ -160,36 +159,9 @@
             this.dgvRes.Size = new System.Drawing.Size(54, 53);
             this.dgvRes.TabIndex = 6;
             // 
-            // btnEditLabirinthRun
-            // 
-            this.btnEditLabirinthRun.Location = new System.Drawing.Point(37, 108);
-            this.btnEditLabirinthRun.Name = "btnEditLabirinthRun";
-            this.btnEditLabirinthRun.Size = new System.Drawing.Size(114, 26);
-            this.btnEditLabirinthRun.TabIndex = 7;
-            this.btnEditLabirinthRun.Text = "Начать";
-            this.btnEditLabirinthRun.UseVisualStyleBackColor = true;
-            // 
-            // lbEditLabirinth
-            // 
-            this.lbEditLabirinth.AutoSize = true;
-            this.lbEditLabirinth.Location = new System.Drawing.Point(33, 85);
-            this.lbEditLabirinth.Name = "lbEditLabirinth";
-            this.lbEditLabirinth.Size = new System.Drawing.Size(246, 20);
-            this.lbEditLabirinth.TabIndex = 8;
-            this.lbEditLabirinth.Text = "Редактирование лабиринта";
-            // 
-            // btnEditLabirinthFinish
-            // 
-            this.btnEditLabirinthFinish.Location = new System.Drawing.Point(165, 108);
-            this.btnEditLabirinthFinish.Name = "btnEditLabirinthFinish";
-            this.btnEditLabirinthFinish.Size = new System.Drawing.Size(114, 26);
-            this.btnEditLabirinthFinish.TabIndex = 9;
-            this.btnEditLabirinthFinish.Text = "Закончить";
-            this.btnEditLabirinthFinish.UseVisualStyleBackColor = true;
-            // 
             // btnInfo
             // 
-            this.btnInfo.Location = new System.Drawing.Point(569, 31);
+            this.btnInfo.Location = new System.Drawing.Point(306, 78);
             this.btnInfo.Name = "btnInfo";
             this.btnInfo.Size = new System.Drawing.Size(129, 27);
             this.btnInfo.TabIndex = 10;
@@ -197,15 +169,37 @@
             this.btnInfo.UseVisualStyleBackColor = true;
             this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
             // 
+            // lbEdit
+            // 
+            this.lbEdit.AutoSize = true;
+            this.lbEdit.Location = new System.Drawing.Point(33, 81);
+            this.lbEdit.Name = "lbEdit";
+            this.lbEdit.Size = new System.Drawing.Size(251, 20);
+            this.lbEdit.TabIndex = 13;
+            this.lbEdit.Text = "Редактирование лабиринта:";
+            // 
+            // checkedEdit
+            // 
+            this.checkedEdit.CheckOnClick = true;
+            this.checkedEdit.FormattingEnabled = true;
+            this.checkedEdit.Items.AddRange(new object[] {
+            "Стены",
+            "Вход",
+            "Выход"});
+            this.checkedEdit.Location = new System.Drawing.Point(37, 108);
+            this.checkedEdit.Name = "checkedEdit";
+            this.checkedEdit.Size = new System.Drawing.Size(120, 67);
+            this.checkedEdit.TabIndex = 14;
+            this.checkedEdit.SelectedIndexChanged += new System.EventHandler(this.checkedEdit_SelectedIndexChanged);
+            // 
             // FormName
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(738, 532);
+            this.Controls.Add(this.checkedEdit);
+            this.Controls.Add(this.lbEdit);
             this.Controls.Add(this.btnInfo);
-            this.Controls.Add(this.btnEditLabirinthFinish);
-            this.Controls.Add(this.lbEditLabirinth);
-            this.Controls.Add(this.btnEditLabirinthRun);
             this.Controls.Add(this.dgvRes);
             this.Controls.Add(this.btnCreateLabirinth);
             this.Controls.Add(this.numericUpDownCols);
@@ -235,10 +229,9 @@
         private System.Windows.Forms.NumericUpDown numericUpDownCols;
         private System.Windows.Forms.Button btnCreateLabirinth;
         private System.Windows.Forms.DataGridView dgvRes;
-        private System.Windows.Forms.Button btnEditLabirinthRun;
-        private System.Windows.Forms.Label lbEditLabirinth;
-        private System.Windows.Forms.Button btnEditLabirinthFinish;
         private System.Windows.Forms.Button btnInfo;
+        private System.Windows.Forms.Label lbEdit;
+        private System.Windows.Forms.CheckedListBox checkedEdit;
     }
 }
 

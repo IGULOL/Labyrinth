@@ -34,28 +34,65 @@ namespace Labyrinth
             MessageBox.Show("     Размер n x m: размер будущего лабиринта, где n -\r\n"
                 + "количество строк, m - количество столбцов.\r\n"
                 + "     Редактирование лабиринта: \r\n"
-                + "a) начать - при выборе в таблице ячеек, соответствующие\r\n"
-                + "ячейки меняют цвет;\r\n"
-                + "b) закончить - останавливает редактирование.\r\n"
-                + "     Черный цвет означает стену, белый - пустоту (проход).\r\n",
+                + "a) При выборе 'Стены' позволяет рисовать стены.\r\n"
+                + "b) При выборе 'Вход/Выход' позволяет рисовать вход и выход.\r\n"
+                + "     Пояснение цветов лабиринта: \r\n"
+                + "a) Черный цвет означает стены.\r\n"
+                + "b) Белый цвет - проходы.\r\n"
+                + "c) Голубой цвет - вход в лабиринт.\r\n"
+                + "c) Синий цвет - выход из лабиринта.\r\n"
+                + "d) Зеленый цвет - путь из лабиринта.\r\n"
+                + "e) Красный цвет - использование гранат.\r\n",
                 "Информация о работе приложения", MessageBoxButtons.OK);
         }
 
+        //при нажатии на ячейку
         private void dgvLabirinth_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
             var cell = dgvLabirinth[e.ColumnIndex, e.RowIndex];
 
-            if (cell.Style.BackColor == Color.White)
+            Color color = cell.Style.BackColor;
+
+            if (checkedEdit.CheckedItems.Count > 0)
             {
-                cell.Style.BackColor = Color.Black;
-            }
-            else
-                if (cell.Style.BackColor == Color.Black)
+                switch (checkedEdit.SelectedIndex)
+                {
+                    case 0:
+                        color = Color.Black;
+                        break;
+                    case 1:
+                        color = Color.Blue;
+                        break;
+                    case 2:
+                        color = Color.DarkBlue;
+                        break;
+                }
+            
+                if (cell.Style.BackColor == Color.White)
+                {
+                    cell.Style.BackColor = color;
+                }
+                else
                 {
                     cell.Style.BackColor = Color.White;
                 }
+            }
 
             cell.Style.SelectionBackColor = cell.Style.BackColor;
+        }
+
+        //выбор checkBox для редактирования
+        private void checkedEdit_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //если уже есть отмеченные, то снимаем выделение
+            if (checkedEdit.CheckedItems.Count > 0)
+            {
+                for (int i = 0; i < checkedEdit.Items.Count; i++)
+                {
+                    checkedEdit.SetItemChecked(i, false);
+                }
+                checkedEdit.SetItemChecked(checkedEdit.SelectedIndex, true);
+            }
         }
     }
 }
