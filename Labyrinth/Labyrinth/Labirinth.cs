@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace Labyrinth
 {
@@ -33,9 +34,35 @@ namespace Labyrinth
             throw new NotImplementedException();
         }
 
-        public void GridToLabirinth()
+        public bool GridToLabirinth()
         {
-            throw new NotImplementedException();
+            if ((dgv.ColumnCount != cols) || (dgv.RowCount != rows))
+            {
+                return false;
+            }
+
+            //проверяем наличие одного входа и одного выхода
+            for (int i = 0; (i < cols); i++)
+            {
+                for (int j = 0; (j < rows); j++)
+                {
+                    //стена
+                    if (dgv[i, j].Style.BackColor == Color.Black)
+                    {
+                        labirinth[i, j] = -2;
+                    }
+                    if (dgv[i, j].Style.BackColor == Color.Blue)
+                    {
+                        labirinth[i, j] = 0;
+                    }
+                    //финиш
+                    if (dgv[i, j].Style.BackColor == Color.DarkBlue)
+                    {
+                        labirinth[i, j] = -1;
+                    }
+                }
+            }
+            return true;
         }
     }
 }

@@ -23,8 +23,8 @@ namespace Labyrinth
 
         private void btnCreateLabirinth_Click(object sender, EventArgs e)
         {
-            int rows = Convert.ToInt32(numericUpDownRows.Value);
-            int cols = Convert.ToInt32(numericUpDownCols.Value);
+            int rows = Convert.ToInt32(countRows.Value);
+            int cols = Convert.ToInt32(countCols.Value);
 
             lbr = new Labirinth(dgvLabirinth, rows, cols);
         }
@@ -32,17 +32,19 @@ namespace Labyrinth
         private void btnInfo_Click(object sender, EventArgs e)
         {
             MessageBox.Show("     Размер n x m: размер будущего лабиринта, где n -\r\n"
-                + "количество строк, m - количество столбцов.\r\n"
+                + "количество строк, m - количество столбцов.\r\n\r\n"
                 + "     Редактирование лабиринта: \r\n"
                 + "a) При выборе 'Стены' позволяет рисовать стены.\r\n"
-                + "b) При выборе 'Вход/Выход' позволяет рисовать вход и выход.\r\n"
+                + "b) При выборе 'Вход/Выход' позволяет рисовать вход и выход.\r\n\r\n"
                 + "     Пояснение цветов лабиринта: \r\n"
                 + "a) Черный цвет означает стены.\r\n"
                 + "b) Белый цвет - проходы.\r\n"
                 + "c) Голубой цвет - вход в лабиринт.\r\n"
                 + "c) Синий цвет - выход из лабиринта.\r\n"
                 + "d) Зеленый цвет - путь из лабиринта.\r\n"
-                + "e) Красный цвет - использование гранат.\r\n",
+                + "e) Красный цвет - использование гранат.\r\n\r\n"
+                + "     Внимание! В лабиринте может быть неограниченное\r\n"
+                + "количество стен, один вход и один выход.\r\n",
                 "Информация о работе приложения", MessageBoxButtons.OK);
         }
 
@@ -92,6 +94,20 @@ namespace Labyrinth
                     checkedEdit.SetItemChecked(i, false);
                 }
                 checkedEdit.SetItemChecked(checkedEdit.SelectedIndex, true);
+            }
+        }
+
+        //найти путь
+        private void btnRun_Click(object sender, EventArgs e)
+        {
+            if(!DataGridViewUtils.CheckDataGridView(dgvLabirinth))
+            {
+                MessageBox.Show("В лабиринте должен быть один вход и один выход.",
+                "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                lbr.GridToLabirinth();
             }
         }
     }

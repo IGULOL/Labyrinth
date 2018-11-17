@@ -34,11 +34,11 @@ namespace Labyrinth
             dgv.DataSource = lbr;
             for (int i = 0; i < n_col; i++)
             {
-                dgv.Columns[i].Width = 30;
+                dgv.Columns[i].Width = 25;
             }
             for (int i = 0; i < n_str; i++)
             {
-                dgv.Rows[i].Height = 30;
+                dgv.Rows[i].Height = 25;
             }
 
             //настройка размера лабиринта
@@ -54,6 +54,34 @@ namespace Labyrinth
                     dgv[i, j].Style.SelectionBackColor = Color.GhostWhite;
                 }
             }
+        }
+
+        //проверить правильность построенного лабиринта
+        public static bool CheckDataGridView(DataGridView dgv)
+        {
+            int n_col = dgv.ColumnCount;
+            int n_str = dgv.RowCount;
+
+            int n_in = 0;
+            int n_out = 0;
+
+            //проверяем наличие одного входа и одного выхода
+            for (int i = 0; (i < n_col); i++)
+            {
+                for (int j = 0; (j < n_str); j++)
+                {
+                    if (dgv[i, j].Style.BackColor == Color.Blue)
+                    {
+                        n_in++;
+                    }
+                    if (dgv[i, j].Style.BackColor == Color.DarkBlue)
+                    {
+                        n_out++;
+                    }
+                }
+            }
+
+            return (n_in == 1) && (n_out == 1);
         }
     }
 }
