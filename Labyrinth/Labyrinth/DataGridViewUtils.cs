@@ -12,18 +12,18 @@ namespace Labyrinth
     class DataGridViewUtils
     {
         //задать лабиринт нужного размера
-        public static void ShowDataGridView(DataGridView dgv, int n_str, int n_col)
+        public static void ShowDataGridView(DataGridView dgv, int n)
         {
             DataTable lbr = new DataTable("labirinth");
-            DataColumn[] cols = new DataColumn[n_col];
+            DataColumn[] cols = new DataColumn[n];
 
             //создание нужного количества ячеек
-            for (int i = 0; i < n_col; i++)
+            for (int i = 0; i < n; i++)
             {
                 cols[i] = new DataColumn(i.ToString());
                 lbr.Columns.Add(cols[i]);
             }
-            for (int i = 0; i < n_str; i++)
+            for (int i = 0; i < n; i++)
             {
                 DataRow newRow;
                 newRow = lbr.NewRow();
@@ -32,23 +32,23 @@ namespace Labyrinth
 
             //установление размера ячеек
             dgv.DataSource = lbr;
-            for (int i = 0; i < n_col; i++)
+            for (int i = 0; i < n; i++)
             {
                 dgv.Columns[i].Width = 25;
             }
-            for (int i = 0; i < n_str; i++)
+            for (int i = 0; i < n; i++)
             {
                 dgv.Rows[i].Height = 25;
             }
 
             //настройка размера лабиринта
-            dgv.Width = dgv.Columns[0].Width * n_col + n_col;
-            dgv.Height = dgv.Rows[0].Height * n_str + n_str;
+            dgv.Width = dgv.Columns[0].Width * n + n;
+            dgv.Height = dgv.Rows[0].Height * n + n;
 
             //настройка цвета ячеек
-            for (int i = 0; i < n_col; i++)
+            for (int i = 0; i < n; i++)
             {
-                for (int j = 0; j < n_str; j++)
+                for (int j = 0; j < n; j++)
                 {
                     dgv[i, j].Style.BackColor = Color.White;
                     dgv[i, j].Style.SelectionBackColor = Color.GhostWhite;
@@ -82,6 +82,40 @@ namespace Labyrinth
             }
 
             return (n_in == 1) && (n_out == 1);
+        }
+
+        public static void RandomDataGridView(DataGridView dgv, Random rnd)
+        {
+            int n_col = dgv.ColumnCount;
+            int n_str = dgv.RowCount;
+
+            for (int i = 0; (i < n_col); i++)
+            {
+                for (int j = 0; (j < n_str); j++)
+                {
+                    bool doWall = (rnd.NextDouble() < 0.5);
+                    if (doWall)
+                    {
+                        dgv[i, j].Style.BackColor = Color.Black;
+                    }
+                    else
+                    {
+                        dgv[i, j].Style.BackColor = Color.White;
+                    }
+                }
+            }
+            int x = rnd.Next(1, n_col);
+            int y = rnd.Next(1, n_str);
+            dgv[x, y].Style.BackColor = Color.Blue;
+            do
+            {
+                x = rnd.Next(1, n_col);
+                y = rnd.Next(1, n_str);
+                if (dgv[x, y].Style.BackColor != Color.Blue)
+                {
+                    dgv[x, y].Style.BackColor = Color.DarkBlue;
+                }
+            } while  (dgv[x, y].Style.BackColor != Color.DarkBlue);
         }
     }
 }

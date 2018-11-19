@@ -10,23 +10,20 @@ namespace Labyrinth
 {
     class Labirinth 
     {
-        private int rows;
-        private int cols;
+        private int size;
 
         private DataGridView dgv;
 
         private int[,] labirinth; 
         
-        public Labirinth(DataGridView dgv, int rows, int cols)
+        public Labirinth(DataGridView dgv, int size)
         {
             this.dgv = dgv;
+            this.size = size;
 
-            this.rows = rows;
-            this.cols = cols;
+            labirinth = new int[size, size];
 
-            labirinth = new int[rows, cols];
-
-            DataGridViewUtils.ShowDataGridView(dgv, rows, cols);
+            DataGridViewUtils.ShowDataGridView(dgv, size);
         }
 
         public void LabirinthToGrid()
@@ -36,15 +33,15 @@ namespace Labyrinth
 
         public bool GridToLabirinth()
         {
-            if ((dgv.ColumnCount != cols) || (dgv.RowCount != rows))
+            if ((dgv.ColumnCount != size) || (dgv.RowCount != size))
             {
                 return false;
             }
 
             //проверяем наличие одного входа и одного выхода
-            for (int i = 0; (i < cols); i++)
+            for (int i = 0; (i < size); i++)
             {
-                for (int j = 0; (j < rows); j++)
+                for (int j = 0; (j < size); j++)
                 {
                     //стена
                     if (dgv[i, j].Style.BackColor == Color.Black)

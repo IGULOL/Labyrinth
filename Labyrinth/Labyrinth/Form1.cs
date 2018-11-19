@@ -16,17 +16,18 @@ namespace Labyrinth
     {
         Labirinth lbr;
 
+        Random rnd;
+
         public FormName()
         {
             InitializeComponent();
+            rnd = new Random();
         }
 
-        private void btnCreateLabirinth_Click(object sender, EventArgs e)
+        private void InitLabirinth()
         {
-            int rows = Convert.ToInt32(countRows.Value);
-            int cols = Convert.ToInt32(countCols.Value);
-
-            lbr = new Labirinth(dgvLabirinth, rows, cols);
+            int N = Convert.ToInt32(size.Value);
+            lbr = new Labirinth(dgvLabirinth, N);
         }
 
         private void btnInfo_Click(object sender, EventArgs e)
@@ -109,6 +110,31 @@ namespace Labyrinth
             {
                 lbr.GridToLabirinth();
             }
+        }
+
+        private void rbManually_CheckedChanged(object sender, EventArgs e)
+        {
+            checkedEdit.Visible = rbManually.Checked;
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            btnRandom.Visible = !rbManually.Checked;
+        }
+
+        private void size_ValueChanged(object sender, EventArgs e)
+        {
+            InitLabirinth();
+        }
+
+        private void FormName_Shown(object sender, EventArgs e)
+        {
+            InitLabirinth();
+        }
+
+        private void btnRandom_Click(object sender, EventArgs e)
+        {
+            DataGridViewUtils.RandomDataGridView(dgvLabirinth, rnd);          
         }
     }
 }
