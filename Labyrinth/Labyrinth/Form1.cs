@@ -16,6 +16,9 @@ namespace Labyrinth
     {
         Labirinth lbr;
 
+        Point start;
+        Point finish;
+
         Random rnd;
 
         public FormName()
@@ -132,6 +135,7 @@ namespace Labyrinth
             InitLabirinth();
         }
 
+        //создание рандомного лабиринта
         private void btnRandom_Click(object sender, EventArgs e)
         {
             DataGridViewUtils.RandomDataGridView(dgvLabirinth, rnd);          

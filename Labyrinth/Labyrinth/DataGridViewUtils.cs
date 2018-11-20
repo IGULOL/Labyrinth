@@ -84,8 +84,10 @@ namespace Labyrinth
             return (n_in == 1) && (n_out == 1);
         }
 
+        //рандомное создание матрицы
         public static void RandomDataGridView(DataGridView dgv, Random rnd)
         {
+            //делаем стены
             int n_col = dgv.ColumnCount;
             int n_str = dgv.RowCount;
 
@@ -104,6 +106,7 @@ namespace Labyrinth
                     }
                 }
             }
+            //делаем вход и выход
             int x = rnd.Next(1, n_col);
             int y = rnd.Next(1, n_str);
             dgv[x, y].Style.BackColor = Color.Blue;
