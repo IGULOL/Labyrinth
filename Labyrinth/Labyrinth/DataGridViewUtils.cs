@@ -84,8 +84,8 @@ namespace Labyrinth
             return (n_in == 1) && (n_out == 1);
         }
 
-        //рандомное создание матрицы
-        public static void RandomDataGridView(DataGridView dgv, Random rnd)
+        //рандомное создание матрицы лабиринта
+        public static void RandomDataGridView(DataGridView dgv, Random rnd, ref Point start, ref Point finish)
         {
             //делаем стены
             int n_col = dgv.ColumnCount;
@@ -109,16 +109,41 @@ namespace Labyrinth
             //делаем вход и выход
             int x = rnd.Next(1, n_col);
             int y = rnd.Next(1, n_str);
+            start = new Point(x, y);
             dgv[x, y].Style.BackColor = Color.Blue;
             do
             {
                 x = rnd.Next(1, n_col);
-                y = rnd.Next(1, n_str);
+                y = rnd.Next(1, n_str);               
                 if (dgv[x, y].Style.BackColor != Color.Blue)
                 {
                     dgv[x, y].Style.BackColor = Color.DarkBlue;
                 }
             } while  (dgv[x, y].Style.BackColor != Color.DarkBlue);
+            finish = new Point(x, y);
+        }
+
+        //стереть путь
+        public static void ClearWay(DataGridView dgv)
+        {
+            int n_col = dgv.ColumnCount;
+            int n_str = dgv.RowCount;
+
+            for (int i = 0; (i < n_col); i++)
+            {
+                for (int j = 0; (j < n_str); j++)
+                {
+                    if (dgv[i, j].Style.BackColor == Color.Green)
+                    {
+                        dgv[i, j].Style.BackColor = Color.White;
+                    }
+                    else
+                        if (dgv[i, j].Style.BackColor == Color.Red)
+                        {
+                            dgv[i, j].Style.BackColor = Color.Black;
+                        }
+                }
+            }
         }
     }
 }

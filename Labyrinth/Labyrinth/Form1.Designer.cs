@@ -40,6 +40,7 @@
             this.rbManually = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.btnRandom = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLabirinth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.size)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.countGrenades)).BeginInit();
@@ -55,7 +56,7 @@
             this.dgvLabirinth.ColumnHeadersHeight = 25;
             this.dgvLabirinth.ColumnHeadersVisible = false;
             this.dgvLabirinth.GridColor = System.Drawing.SystemColors.ButtonFace;
-            this.dgvLabirinth.Location = new System.Drawing.Point(246, 28);
+            this.dgvLabirinth.Location = new System.Drawing.Point(248, 28);
             this.dgvLabirinth.Margin = new System.Windows.Forms.Padding(4);
             this.dgvLabirinth.Name = "dgvLabirinth";
             this.dgvLabirinth.ReadOnly = true;
@@ -71,7 +72,7 @@
             this.size.Location = new System.Drawing.Point(24, 55);
             this.size.Margin = new System.Windows.Forms.Padding(4);
             this.size.Maximum = new decimal(new int[] {
-            13,
+            14,
             0,
             0,
             0});
@@ -209,11 +210,21 @@
             this.btnRandom.UseVisualStyleBackColor = true;
             this.btnRandom.Click += new System.EventHandler(this.btnRandom_Click);
             // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(25, 362);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(192, 27);
+            this.btnClear.TabIndex = 21;
+            this.btnClear.Text = "Очистить лабиринт";
+            this.btnClear.UseVisualStyleBackColor = true;
+            // 
             // FormName
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(609, 394);
+            this.ClientSize = new System.Drawing.Size(645, 421);
+            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnRandom);
             this.Controls.Add(this.radioButton2);
             this.Controls.Add(this.rbManually);
@@ -253,6 +264,7 @@
         private System.Windows.Forms.RadioButton rbManually;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.Button btnRandom;
+        private System.Windows.Forms.Button btnClear;
     }
 }
 
